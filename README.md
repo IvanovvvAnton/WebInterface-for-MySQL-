@@ -168,6 +168,10 @@ Viewing data about entered users:
 
 ![image](https://github.com/user-attachments/assets/5912181f-e6b8-4bd8-aeb5-fb0032fd6516)
 
+The HTML code of the corresponding form
+
+[HTML code in view_users.html file](view_users.html)
+
 ### 📸 Integration with biometrics
 
 For each user, you can add a photo to be used in the facial recognition system. After adding a user, the photo is saved in a specific directory, and the system automatically binds it to the UID.
