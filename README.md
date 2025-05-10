@@ -1,5 +1,38 @@
 # WebInterface-for-MySQL
+## 📋 Table of Contents
 
+### 🌐 System Overview
+1. [Database Purpose](#-appointment)
+   - [Key Functions](#key-functions)
+   - [Security Features](#security-features)
+
+### ⚙️ Database Implementation
+1. [MySQL Advantages](#-advantages-of-mysql)
+2. [MySQL Limitations](#-disadvantages-of-mysql)
+3. [Database Structure](#-database-structure)
+   - [Schema Diagram](#schema-diagram)
+   - [Table Creation](#table-creation-sql)
+
+### 🔐 Web Interface
+1. [Authentication System](#-login-and-password-login)
+   - [Login Form](#login-form-implementation)
+2. [Security Measures](#-authorization-and-security)
+   - [TLS Configuration](#-enabling-tls-in-mysql)
+3. [User Management](#-user-management)
+   - [Add Users](#add-user-interface)
+   - [View Users](#view-users-interface)
+
+### 📸 Biometric Integration
+1. [Photo Management](#-integration-with-biometrics)
+
+### 🔒 HTTPS Configuration
+1. [Certificate Generation](#-https-web-interface-and-certificate-generation)
+2. [Flask Implementation](#flask-https-configuration)
+
+### 👥 Authors
+- [Contact Information](#-authors)
+
+  
 A centralized database was implemented to store and manage user data in the access control and management system (ACS) under development. Such a base is necessary for:
 
 1 Storage of unique identifiers (UIDS) of RFID cards of users;
