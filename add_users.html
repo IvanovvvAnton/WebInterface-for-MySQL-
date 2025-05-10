@@ -2,7 +2,6 @@
     <div class="form-container">
         <h1>Добавить пользователя</h1>
 
-        <!-- Сообщение об ошибке -->
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
