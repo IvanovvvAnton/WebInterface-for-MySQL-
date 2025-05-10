@@ -194,25 +194,25 @@ To increase the security of interaction with the web interface of the access con
 
 A self-signed SSL/TLS certificate was used to implement HTTPS on the server. This certificate is created to establish a secure connection and ensures that the data between the user and the server is encrypted. If a self-signed certificate is used, the browser notifies the user that the certificate has not been verified by a third party, but in the context of local and test systems, this is a sufficient security measure.
 
-The OpenSSL utility was used to generate the self-signed certificate. The process involved several steps:
+To generate a self-signed certificate and a private key for use in Flask with HTTPS,  use the openssl utility:
 
-Private key generation:
 ```
-openssl genpkey -algorithm RSA -out server.key -pkeyopt rsa_keygen_bits:2048
+openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365 -nodes
 ```
-Creating a Certificate Request (CSR):
-```
-openssl req -new -key server.key -out server.csr
-```
-Creating a self-signed certificate:
-```
-openssl x509 -req -in server.csr -signkey server.key -out server.crt -days 365
-```
+
 After completing these steps, the received server.key (private key) and server.crt (certificate) files were used to configure HTTPS on the server.
 
 ![image](https://github.com/user-attachments/assets/dab493a4-efb4-477d-af0d-76abe80bf878)
 
 This ensured the protection of all transmitted data, as well as increased user confidence in the system, ensuring that their data is protected during operation.
+
+Below is the code for launching the Flask server using a self-signed TLS certificate:
+
+```
+if __name__ == '__main__':
+    context = ('cert.pem', 'key.pem')  
+    app.run(host='0.0.0.0', port=443, ssl_context=context)
+```
 
 # Authors
 If you have any questions, you can ask them to us by writing to us at email:
