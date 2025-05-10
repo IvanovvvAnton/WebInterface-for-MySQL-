@@ -1,0 +1,46 @@
+<body>
+    <div class="form-container">
+        <h1>Добавить пользователя</h1>
+
+        <!-- Сообщение об ошибке -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="mistake-message">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="post" action="{{ url_for('index') }}">
+            <label for="id">ID:</label>
+            <input type="text" id="id" name="id" required>
+
+            <label for="surname">Фамилия:</label>
+            <input type="text" id="surname" name="surname" required>
+
+            <label for="name">Имя:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="patronymic">Отчество:</label>
+            <input type="text" id="patronymic" name="patronymic">
+
+            <label for="rfid_tag">UID:</label>
+            <input type="text" id="rfid_tag" name="rfid_tag" required readonly>
+
+            <input type="submit" value="Перейти к съемке фото">
+
+        </form>
+    </div>
+
+  <script>
+        function updateRFID() {
+            fetch('/get_rfid')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.rfid_tag) {
+                        document.querySelector('input[name="rfid_tag"]').value = data.rfid_tag;
+                    }
+                });
+        }
+        setInterval(updateRFID, 1000);
+    </script>
