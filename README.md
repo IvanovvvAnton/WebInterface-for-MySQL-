@@ -160,6 +160,10 @@ Fields for entering user data:
 
 ![image](https://github.com/user-attachments/assets/086f4b04-b5d2-472b-9e08-5e9e6f9e0953)
 
+The HTML code of the corresponding form
+
+[HTML code in add_users.html file](add_users.html)
+
 Viewing data about entered users:
 
 ![image](https://github.com/user-attachments/assets/5912181f-e6b8-4bd8-aeb5-fb0032fd6516)
