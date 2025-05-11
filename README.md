@@ -1,38 +1,31 @@
 # WebInterface-for-MySQL
+
 ## 📋 Table of Contents
-
-### 🌐 System Overview
-1. [Database Purpose](#-appointment)
-   - [Key Functions](#key-functions)
-   - [Security Features](#security-features)
-
-### ⚙️ Database Implementation
-1. [MySQL Advantages](#-advantages-of-mysql)
-2. [MySQL Limitations](#-disadvantages-of-mysql)
-3. [Database Structure](#-database-structure)
-   - [Schema Diagram](#schema-diagram)
-   - [Table Creation](#table-creation-sql)
-
-### 🔐 Web Interface
-1. [Authentication System](#-login-and-password-login)
-   - [Login Form](#login-form-implementation)
-2. [Security Measures](#-authorization-and-security)
+1. [Appointment](#-appointment)
+2. [MySQL advantages](#-advantages-of-mysql)
+3. [MySQL disadvantages](#%EF%B8%8F-disadvantages-of-mysql)
+4. [Database Structure](#-database-structure)
+5. [Web interface](#-a-web-interface-for-the-administration-of-acs)
+   - [Login Form](#-login-and-password-login)
+   - [Authorization](#-authorization-and-security)
+6. [Security Measures](#-authorization-and-security)
    - [TLS Configuration](#-enabling-tls-in-mysql)
-3. [User Management](#-user-management)
+6. [User Management](#-user-management)
    - [Add Users](#add-user-interface)
    - [View Users](#view-users-interface)
-
-### 📸 Biometric Integration
-1. [Photo Management](#-integration-with-biometrics)
-
-### 🔒 HTTPS Configuration
-1. [Certificate Generation](#-https-web-interface-and-certificate-generation)
-2. [Flask Implementation](#flask-https-configuration)
-
-### 👥 Authors
+7. [Photo Management](#-integration-with-biometrics)
+8. [Certificate Generation](#-https-web-interface-and-certificate-generation)
+9. [Flask Implementation](#flask-https-configuration)
 - [Contact Information](#-authors)
 
-  
+## 📌 Appointment
+
+The MySQL database in this Access control and Management System (ACS) serves as the main repository of information about users, their IDs, and log-in/log-out history. It provides centralized data management, which is necessary for accurate identification, registration of access events, and linking RFID and biometric module data. This structure allows the system to remain reliable and scalable as the number of users and access points increases.
+
+The database is used to quickly check the UID of RFID cards, compare them with the user's full name and other data, as well as store additional parameters such as photos for the face recognition system or access status (for example, temporarily blocked). The web interface interacting with the database allows administrators to flexibly manage accounts and receive information about access events in real time.
+
+Additionally, MySQL provides the ability to backup, restore data, and secure a TLS connection. This makes it a suitable choice for building secure enterprise solutions where not only functionality and performance are important, but also compliance with information security requirements.
+
 A centralized database was implemented to store and manage user data in the access control and management system (ACS) under development. Such a base is necessary for:
 
 1 Storage of unique identifiers (UIDS) of RFID cards of users;
@@ -44,14 +37,6 @@ A centralized database was implemented to store and manage user data in the acce
 4 Ensuring fast interaction of all system components — hardware (Arduino, RC522) and software (web interface, processing scripts).
 
 Information from the database is used both to authorize access at the hardware level and to display the status of users in the monitoring system.
-
-## 📌 Appointment
-
-The MySQL database in this Access control and Management System (ACS) serves as the main repository of information about users, their IDs, and log-in/log-out history. It provides centralized data management, which is necessary for accurate identification, registration of access events, and linking RFID and biometric module data. This structure allows the system to remain reliable and scalable as the number of users and access points increases.
-
-The database is used to quickly check the UID of RFID cards, compare them with the user's full name and other data, as well as store additional parameters such as photos for the face recognition system or access status (for example, temporarily blocked). The web interface interacting with the database allows administrators to flexibly manage accounts and receive information about access events in real time.
-
-Additionally, MySQL provides the ability to backup, restore data, and secure a TLS connection. This makes it a suitable choice for building secure enterprise solutions where not only functionality and performance are important, but also compliance with information security requirements.
 
 ## ✅ Advantages of MySQL
 
@@ -129,10 +114,11 @@ Before accessing the functionality of the web interface, the user must complete 
 
 Additionally, TLS encryption is used to protect data during transmission between the client and the server. The thesis uses the TLS_AES_128_GCM_SHA256 cipher, which ensures the confidentiality, integrity and authenticity of the transmitted information. A self-signed certificate was also created to establish a secure HTTPS connection.
 
-#### 🔐 Enabling TLS in MySQL
+## 🔐 Enabling TLS in MySQL
 
 To protect the transmitted information between the MySQL server and the client application (the ACS web interface), TLS (Transport Layer Security) support was implemented in the graduation project. This allows you to encrypt data and prevent it from being intercepted by intruders.
-📁 Step 1. Certificate generation
+
+### 📁 Step 1. Certificate generation
 
 The following files were created to configure TLS:
 1 ca.pem — certificate of the Certification Authority (CA)
@@ -149,7 +135,7 @@ openssl x509 -req -in server-req.pem -days 3650 -CA ca.pem -CAkey ca-key.pem -se
 
 ```
 
-⚙️  Step 2. Configure my.cnf (or mysqld.cnf)
+### ⚙️  Step 2. Configure my.cnf (or mysqld.cnf)
 
 The parameters for enabling TLS have been added to the MySQL configuration file (/etc/mysql/my.cnf or /etc/mysql/mysql.conf.d/mysql.conf):
 
@@ -164,7 +150,7 @@ The path to the certificates is specified according to their location on the ser
 
 The require_secure_transport = ON option forces clients to use TLS when connecting to the server.
 
-🔄 Step 3. Restart MySQL
+### 🔄 Step 3. Restart MySQL
 
 After changing the configuration, the server restarts.:
 
