@@ -8,15 +8,15 @@
 5. [Web interface](#-a-web-interface-for-the-administration-of-acs)
    - [Login Form](#-login-and-password-login)
    - [Authorization](#-authorization-and-security)
-6. [Security Measures](#-authorization-and-security)
-   - [TLS Configuration](#-enabling-tls-in-mysql)
-6. [User Management](#-user-management)
-   - [Add Users](#add-user-interface)
-   - [View Users](#view-users-interface)
-7. [Photo Management](#-integration-with-biometrics)
-8. [Certificate Generation](#-https-web-interface-and-certificate-generation)
-9. [Flask Implementation](#flask-https-configuration)
-- [Contact Information](#-authors)
+6. [TLS Configuration](#-enabling-tls-in-mysql)
+   - [Step 1 Certificate generation](#-step-1-certificate-generation)
+   - [Step 2 Configure mycnf or mysqldcnf](#%EF%B8%8F--step-2-configure-mycnf-or-mysqldcnf)
+   - [Step 3 Restart MySQL](#-step-3-restart-mysql)
+7. [User Management](#-user-management)
+8. [Integration with biometrics](#-integration-with-biometrics)
+9. [Technical details](#-technical-details)
+10. [HTTPS Web Interface](#-https-web-interface-and-certificate-generation)
+11. [Authors](#authors)
 
 ## 📌 Appointment
 
@@ -161,7 +161,7 @@ The output should be:
 
 ![image](https://github.com/user-attachments/assets/e990c68f-b515-493e-a9c8-25f00088d1b8)
 
-### 🧑‍💼 User Management
+## 🧑‍💼 User Management
 
 The interface allows you to:
 
@@ -191,11 +191,11 @@ The HTML code of the corresponding form
 
 [HTML code in view_users.html file](view_users.html)
 
-### 📸 Integration with biometrics
+## 📸 Integration with biometrics
 
 For each user, you can add a photo to be used in the facial recognition system. After adding a user, the photo is saved in a specific directory, and the system automatically binds it to the UID.
 
-### 🛠 Technical details
+## 🛠 Technical details
 
 Server: Flask (Python)
 
